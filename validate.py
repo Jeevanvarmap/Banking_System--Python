@@ -53,15 +53,16 @@ def verifyPhone(phone):
 def generateAccountNo(city,state,accountType):
     global accountSeq
     accountSeq=accountSeq+1
-    accountNo=str(accountType)+str(cities[city])+str(states[state])+str(accountSeq)
+    accountNo=str(accountType)+str(cities[city.title()])+str(states[state.title()])+str(accountSeq)
     return accountNo
     
 def generateIFSC(city,state):
-    IFSC=str('AMDOCS')+str(cities[city])+str(states[state])
+    IFSC=str('AMDOCS')+str(cities[city.title()])+str(states[state.title()])
     return IFSC
     
 def generatePassword(pan,phone):
-    password=str(pan[0:5])+str(phone)[6:]
+    password=str(pan[0:4])+str(phone)[6:]
+    return password
    
 def verifyPAN(inputPAN):
     if len(inputPAN)!=10:

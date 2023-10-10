@@ -185,15 +185,16 @@ def start():
                                         break
                             else:
                                 print("Invalid choice!")
+                            break
                                 
                         
                     elif choice==6:
                         accountNo=input("Enter The Account No.: ")
                         amount=int(input("Enter The amount to be deposited: "))
                         for i in accountsData:
-                            if i.accountNo=accountNo:
+                            if i.accountNo==accountNo:
                                 i.balance=i.balance+amount
-                                print("Balance in ",+ accountNo,+ " Updated Successfully!")
+                                print("Balance Updated Successfully!")
                                 break
                     
                     elif choice==7:
@@ -223,13 +224,64 @@ def start():
                         print("2. Withdaw")
                         print("3. Transfer")
                         print("4. Balance Enquiry")
-                        print("5. Close Account")
-                        print("6. Exit")
+                        print("5. Exit")
                         choice=int(input("Enter Your Choice: "))
                         print("\n")
-                        if choice==6:
+                        
+                        if choice==1:
+                            print("Choose what do you want to update.")
+                            print("1. Name")
+                            print("2. DOB")
+                            choice=int(input("Enter your choice: "))
+                            if choice==1:
+                                while True:
+                                    name=input("Enter Name: ")
+                                    if not verifyName(name):
+                                        print("Invalid Name! Please Enter It Again.")
+                                    else:
+                                        i.name=name
+                                        print("Account Details Updated Successfully!")
+                            elif choice==2:
+                                while True:
+                                    DOB=input("Enter DOB: ")
+                                    if not verifyDOB(DOB):
+                                        print("Invalid DOB! Please Enter It Again.")
+                                    else:
+                                        i.DOB=DOB
+                                        print("Account Details Updated Successfully!")
+                                    
+                        elif choice==2:
+                            amount=int(input("Enter the amount you want to withdraw: "))
+                            if i.balance>=amount:
+                                i.balance=i.balance-amount
+                                print("Windraw Successful")
+                                print("Updated balance is "+str(i.balance))
+                            else:
+                                print("insufficient balance")
+                        
+                        elif choice==3:
+                            accountNoT=input("Enter The Account No. you want to transfer: ")
+                            amount=int(input("Enter the amount you want to Transfer: "))
+                            if i.balance>=amount:
+                                i.balance=i.balance-amount
+                                for j in accountsData:
+                                    if j.accountNo==accountNoT:
+                                        j.balance=j.balance+amount
+                                        print("Transfer Successful")
+                                        print("Updated balance is "+str(i.balance))
+                                        break
+                            else:
+                                print("insufficient balance")
+                            break
+                        
+                        elif choice==4:
+                            print("Account Balance: "+str(i.balance))
+                            
+                        elif choice==5:
                             print("Thank You!")
                             break
+                        else:
+                            print("Invalid Choice")
                     break
             if(check==False):
                 print("Invalid Username/Password")
