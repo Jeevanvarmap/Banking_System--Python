@@ -34,8 +34,6 @@ class Accounts:
         elif self.accountType == 2:
             print("Account Type: Current")
         print("Balance: "+str(self.balance))
-        
-        
 
 from validate import *
 from adminVerify import *
@@ -69,7 +67,8 @@ def start():
                     print("3. Close An Account")
                     print("4. Update Account Details")
                     print("5. Get Details of a specific Account")
-                    print("6. Exit")
+                    print("6. Add Money in an Account")
+                    print("7. Exit")
                     choice=int(input("Enter Your Choice: "))
                     print("\n")
                     if choice == 1:
@@ -189,6 +188,15 @@ def start():
                                 
                         
                     elif choice==6:
+                        accountNo=input("Enter The Account No.: ")
+                        amount=int(input("Enter The amount to be deposited: "))
+                        for i in accountsData:
+                            if i.accountNo=accountNo:
+                                i.balance=i.balance+amount
+                                print("Balance in ",+ accountNo,+ " Updated Successfully!")
+                                break
+                    
+                    elif choice==7:
                         print("Thank You!")
                         break
                         
@@ -214,11 +222,12 @@ def start():
                         print("1. Update Account Details")
                         print("2. Withdaw")
                         print("3. Transfer")
-                        print("4. Close Account")
-                        print("5. Exit")
+                        print("4. Balance Enquiry")
+                        print("5. Close Account")
+                        print("6. Exit")
                         choice=int(input("Enter Your Choice: "))
                         print("\n")
-                        if choice==5:
+                        if choice==6:
                             print("Thank You!")
                             break
                     break
