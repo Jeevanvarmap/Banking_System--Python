@@ -1,13 +1,16 @@
 class Accounts:
-    def __init__(self,name,gender,aadhar,pan,dob,address,accountNo,accountType,balance):
+    def __init__(self,name,gender,aadhar,pan,dob,phone,address,accountNo,ifscCode,accountType,password,balance):
         self.name=name
         self.gender=gender
         self.aadhar=aadhar
         self.pan=pan
         self.dob=dob
+        self.phone=phone
         self.address=address
         self.accountNo=accountNo
+        self.ifscCode=ifscCode
         self.accountType=accountType
+        self.password=password
         self.balance=balance
 
     def display(self):
@@ -17,10 +20,19 @@ class Accounts:
         print("Aadhar: "+self.aadhar)
         print("PAN: "+self.pan)
         print("DOB: "+self.dob)
+        print("Phone Number: "+self.phone)
+        if self.gender == 1:
+            print("Gender: Male")
+        elif self.gender == 2:
+            print("Gender: Female")
         print("Address: "+self.address)
         print("-----Account Details-----")
         print("AccountNo: "+self.accountNo)
-        print("Account Type: "+str(self.accountType))
+        print("IFSC Code: "+self.ifscCode)
+        if self.accountType == 1:
+            print("Account Type: Savings")
+        elif self.accountType == 2:
+            print("Account Type: Current")
         print("Balance: "+str(self.balance))
         
         
@@ -44,10 +56,10 @@ def start():
         
         if choice==1:
             
-            print("-----Login-----")
+            print("-----ADMIN Login-----")
             username=input("Username: ")
             password=input("Password: ")
-            if verifyAccount(username,password):
+            if verifyAdminAccount(username,password):
                 print("Login Successful")
                 while True:
                     print("\n")
@@ -56,7 +68,8 @@ def start():
                     print("2. Diaplay All The Accounts")
                     print("3. Close An Account")
                     print("4. Update Account Details")
-                    print("5. Exit")
+                    print("5. Get Details of a specific Account")
+                    print("6. Exit")
                     choice=int(input("Enter Your Choice: "))
                     print("\n")
                     if choice == 1:
@@ -97,12 +110,18 @@ def start():
                                 print("Invalid Aadhar! Please Enter It Again.")
                             else:
                                 break
+                        while True:
+                            phone=input("Enter Phone Number: ")
+                            if not verifyPhone(phone):
+                                print("Invalid Phone Number! Please Enter It Again.")
+                            else:
+                                break
                         print("Enter the address:")
                         houseNo=input("House: ")
                         city=input("City: ")
                         state=input("State: ")
                         address=houseNo + " , " + city + " , " + state
-                        account=Accounts(name,gender,aadhar,PAN,DOB,address,generateAccountNo(city,state,accountType),accountType,balance=0)
+                        account=Accounts(name,gender,aadhar,PAN,DOB,phone,address,generateAccountNo(city,state,accountType),generateIFSC(city,state),accountType,generatePassword(PAN,phone),balance=0)
                         accountsData.append(account)
                         print("\n")
                         print("Account Opened Successfully!!!")
@@ -148,8 +167,30 @@ def start():
                                             break
                         
                     elif choice==5:
-                        break
+                        print("Search Account Based on:")
+                        print("1. Name")
+                        print("2. AccountNo")
+                        while True:
+                            choice=int(input("Enter your choice: "))
+                            if choice==1:
+                                name=input("Enter The Name of The Account Holder: ")
+                                for i in accountsData:
+                                    if i.name==name:
+                                        i.display()
+                                        break
+                            elif choice==2:
+                                accountNo=input("Enter The AccountNo of The Account Holder: ")
+                                for i in accountsData:
+                                    if i.accountNo==accountNo:
+                                        i.display()
+                                        break
+                            else:
+                                print("Invalid choice!")
+                                
+                        
+                    elif choice==6:
                         print("Thank You!")
+                        break
                         
                     else:
                         print("Invalid Choice")
@@ -158,7 +199,32 @@ def start():
                 print("Invalid Username/Password")
         
         elif choice==2:
-            print("Hello Customer!")
+            print("-----Customer Account Login-----")
+            print(" ** Password Hint: First 4 letters of PAN followed by last 4 number of the mobile number **")
+            username=input("Account No.: ")
+            password=input("Password : ")
+            check=False
+            for i in accountsData:
+                if i.accountNo==username and i.password==password:
+                    print("Login Successful")
+                    check=True
+                    while True:
+                        print("\n")
+                        print("What do you want to do?")
+                        print("1. Update Account Details")
+                        print("2. Withdaw")
+                        print("3. Transfer")
+                        print("4. Close Account")
+                        print("5. Exit")
+                        choice=int(input("Enter Your Choice: "))
+                        print("\n")
+                        if choice==5:
+                            print("Thank You!")
+                            break
+                    break
+            if(check==False):
+                print("Invalid Username/Password")
+            
             
         elif choice==3:
             flag=False

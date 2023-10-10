@@ -1,4 +1,4 @@
-seq=1000
+accountSeq=1000
 cities={'Pune':11,'Chandigarh':12,'Hyderbad':13,'Bengaluru':14,'Chennai':15}
 states={'Maharastra':21,'karnataka':22,'Telangana':23,'TamilNadu':24,'Haryana':25}
 
@@ -42,12 +42,26 @@ def verifyDOB(inputDOB):
         if int(DOB[0])>30 or int(DOB[0])<0:
             return False
     return True
+    
+def verifyPhone(phone):
+    if len(phone)!=10:
+        return False
+    if not phone.isnumeric:
+        return False
+    return True
 
 def generateAccountNo(city,state,accountType):
-    global seq
-    seq=seq+1
-    accountNo=str(accountType)+str(cities[city])+str(states[state])+str(seq)
+    global accountSeq
+    accountSeq=accountSeq+1
+    accountNo=str(accountType)+str(cities[city])+str(states[state])+str(accountSeq)
     return accountNo
+    
+def generateIFSC(city,state):
+    IFSC=str('AMDOCS')+str(cities[city])+str(states[state])
+    return IFSC
+    
+def generatePassword(pan,phone):
+    password=str(pan[0:5])+str(phone)[6:]
    
 def verifyPAN(inputPAN):
     if len(inputPAN)!=10:
