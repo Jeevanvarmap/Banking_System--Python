@@ -94,17 +94,17 @@ def start():
                         print("Enter the address:")
                         houseNo=input("House: ")
 			while True:
-                            city=input("City: ")
-                            if city.lower() not in ('pune','chandigarh','hyderbad','bengaluru','chennai'):
-                                print("Invalid City! Please Enter It Again.")
-                            else:
-                                break
+                            	city=input("City: ")
+                            	if city.lower() not in ('pune','chandigarh','hyderbad','bengaluru','chennai'):
+                                	print("Invalid City! Please Enter It Again.")
+                            	else:
+                                	break
 			while True:
-                            state=input("State: ")
-                            if state.lower() not in ('maharastra','karnataka','telangana','tamilnadu','haryana'):
-                                print("Invalid state! Please Enter It Again.")
-                            else:
-                                break
+				state=input("State: ")
+                            	if state.lower() not in ('maharastra','karnataka','telangana','tamilnadu','haryana'):
+                               		print("Invalid state! Please Enter It Again.")
+                            	else:
+                                	break
                         address=houseNo + " , " + city + " , " + state
                         account=Accounts(name,gender,aadhar,PAN,DOB,phone,address,generateAccountNo(city,state,accountType),generateIFSC(city,state),accountType,generatePassword(PAN,phone),balance=0)
                         accountsData.append(account)
