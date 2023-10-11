@@ -1,6 +1,6 @@
 accountSeq=1000
-cities={'Pune':11,'Chandigarh':12,'Hyderbad':13,'Bengaluru':14,'Chennai':15}
-states={'Maharastra':21,'karnataka':22,'Telangana':23,'TamilNadu':24,'Haryana':25}
+cities={'pune':11,'chandigarh':12,'hyderbad':13,'bengaluru':14,'chennai':15}
+states={'maharastra':21,'karnataka':22,'telangana':23,'tamilnadu':24,'haryana':25}
 
 
 def verifyName(inputName):
@@ -53,11 +53,11 @@ def verifyPhone(phone):
 def generateAccountNo(city,state,accountType):
     global accountSeq
     accountSeq=accountSeq+1
-    accountNo=str(accountType)+str(cities[city.title()])+str(states[state.title()])+str(accountSeq)
+    accountNo=str(accountType)+str(cities[city.lower()])+str(states[state.lower()])+str(accountSeq)
     return accountNo
     
 def generateIFSC(city,state):
-    IFSC=str('AMDOCS')+str(cities[city.title()])+str(states[state.title()])
+    IFSC=str('AMDOCS')+str(cities[city.lower()])+str(states[state.lower()])
     return IFSC
     
 def generatePassword(pan,phone):
