@@ -18,9 +18,9 @@ class Accounts:
         self.password=password
         self.balance=balance
         if self.accountType in self.accTypeDiv.keys():
-            self.accTypeDiv[self.accountType].append([self.accountNo,self.name])
+            self.accTypeDiv[self.accountType].append(self.accountNo)
         else:
-            self.accTypeDiv[self.accountType]=([self.accountNo,self.name])
+            self.accTypeDiv[self.accountType]=[self.accountNo]
 
     def display(self):
         print("\n")
@@ -49,9 +49,13 @@ class Accounts:
         print("\n")
         print("Savings Accounts:")
         for k,v in self.accTypeDiv.items():
-            if(k==1):
-                print(v[0],' - ',v[1])
+            if k==1:
+                for l in v:
+                    print(l,end=" ")
+                print("")
         print("Current Accounts:")
         for k,v in self.accTypeDiv.items():
-            if(k==2):
-                print(v[0],' - ',v[1])
+            if k==2:
+                for l in v:
+                    print(l,end=" ")
+                print("")

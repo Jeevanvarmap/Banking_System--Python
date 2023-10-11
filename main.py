@@ -93,18 +93,18 @@ def start():
                                 break
                         print("Enter the address:")
                         houseNo=input("House: ")
-			while True:
-                            	city=input("City: ")
-                            	if city.lower() not in ('pune','chandigarh','hyderbad','bengaluru','chennai'):
-                                	print("Invalid City! Please Enter It Again.")
-                            	else:
-                                	break
-			while True:
-				state=input("State: ")
-                            	if state.lower() not in ('maharastra','karnataka','telangana','tamilnadu','haryana'):
-                               		print("Invalid state! Please Enter It Again.")
-                            	else:
-                                	break
+                        while True:
+                            city=input("City: ")
+                            if city.lower() not in ('pune','chandigarh','hyderbad','bengaluru','chennai'):
+                                print("Invalid City! Please Enter It Again.")
+                            else:
+                                break
+                        while True:
+                            state=input("State: ")
+                            if state.lower() not in ('maharastra','karnataka','telangana','tamilnadu','haryana'):
+                                print("Invalid state! Please Enter It Again.")
+                            else:
+                                break
                         address=houseNo + " , " + city + " , " + state
                         account=Accounts(name,gender,aadhar,PAN,DOB,phone,address,generateAccountNo(city,state,accountType),generateIFSC(city,state),accountType,generatePassword(PAN,phone),balance=0)
                         accountsData.append(account)
@@ -181,15 +181,15 @@ def start():
                     elif choice==6:
                         accountNo=input("Enter The Account No.: ")
                         amount=int(input("Enter The amount to be deposited: "))
-			found=False
+                        found=False
                         for i in accountsData:
                             if i.accountNo==accountNo:
-				found=True
+                                found=True
                                 i.balance=i.balance+amount
                                 print("Balance Updated Successfully!")
                                 break
-			if(Found==False):
-				print("Invalid Details Enterted")
+                        if(Found==False):
+                            print("Invalid Details Enterted")
                         x=input()
                     
                     elif choice==7:

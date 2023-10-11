@@ -3,7 +3,7 @@ from validate import *
 
 def addDummyData():
     name=["Jeevan Narayana Raju","Nani Reddy Bakka"]
-    accountType=[1,2]
+    accountType=['1','2']
     gender=[1,1]
     DOB=["31/08/2001","25/09/2001"]
     PAN=["CKXPN9761N","ASDFG1234H"]
